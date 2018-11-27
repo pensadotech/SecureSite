@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Main Page</title>
+</head>
+
+<body>
+
+  <h1>Main Page</h1>
+  <a href="/signIn">Login</a>
+  <a href="/students">Student list</a>
+  <input type="submit" value="SignOut" onclick="signOut()" />
+
+  <div>
+    <label id="username"></label>
+  </div>
+
+  <script>
+    const getSessionUser = () => {
+      fetch('/sessionuser')
+        .then(r => r.json())
+        .then(r => {
+          console.log(r)
+          console.log(r.username)
+          if (r.username !== undefined) {
+            document.querySelector('#username').innerHTML = 'user: ' + r.username
+          }
+        })
+        .catch(e => console.error(e))
+    }
+
+    const signOut = () => {
+      event.preventDefault()
+      console.log("frontend-signOut")
+      // logout
+      fetch('/signOut')
+        .then(r => {
+          console.log(r)
+          console.log(r.url)
+          // redirect
+          window.location = r.url
+        })
+        .catch(e => console.error(e))
+    }
+
+    getSessionUser()
+  </script>
+</body>
+
+</html>
