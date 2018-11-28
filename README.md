@@ -2,7 +2,7 @@
 
 _By Armando Pensado_
 
-##Description
+## Description
 
 I wrote this project as an example how to add authorization and authentication using Node JS, Express, sequelize (ORM), Passport npm, and MySQL. Passport is very popular library in the JavaScript world for adding login functionality (http://www.passportjs.org/). 
 
